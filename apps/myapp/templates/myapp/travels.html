@@ -1,0 +1,78 @@
+<!-- By Andy Nguyen -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>{{user.name}}'s Travel Dashboard</title>
+</head>
+<body>
+    <!-- NAV BAR -->
+    <div class="container">
+        <div class="header">
+            <nav class="navbar navbar-dark bg-dark mb-4">
+                <div>
+                    <span class="text-white h5">{{user.name}}'s Travel Dashboard</span>
+                </div>
+                <span><a type="button" class="btn btn-sm btn-warning" href="/logout"><strong>Log Out</strong></a></span>
+            </nav>
+        </div>
+    </div>    
+    <!-- User's Trip Schedules -->
+    <div class="container mb-5">
+        <h1 class="mb-4">Hello, {{user.name}}!</h1>
+        <h5>Your Planned Trips</h5>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Travel Start Date</th>
+                    <th scope="col">Travel End Date</th>
+                    <th scope="col">Plan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trip in mytrips %}
+                <tr>
+                    <th scope="row"><a href="/travels/destination/{{trip.id}}">{{trip.dest}}</a></th>
+                    <td>{{trip.start.date}}</td>
+                    <td>{{trip.end.date}}</td>
+                    <td>{{trip.plan}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Other Travel Plans -->
+    <div class="container mb-4">
+        <h5>Other Travel Plans</h5>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Travel Start Date</th>
+                    <th scope="col">Travel End Date</th>
+                    <th scope="col">Do You Want to Join?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trip in trips %}
+                <tr>
+                    <td>{{trip.planner.name}}</td>
+                    <th scope="row"><a href="/travels/destination/{{trip.id}}">{{trip.dest}}</a></th>
+                    <td>{{trip.start.date}}</td>
+                    <td>{{trip.end.date}}</td>
+                    <td><a href="/travels/destination/join/{{trip.id}}">Join</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container d-flex justify-content-end">
+        <h3><a href="/travels/add" class="btn btn-primary">Add Travel Plan</a></h3>
+    </div>
+</body>
+</html>

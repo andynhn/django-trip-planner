@@ -1,0 +1,42 @@
+<!-- By Andy Nguyen -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>{{trip.dest}} - Trip Details</title>
+</head>
+<body>
+    <!-- NAV BAR -->
+    <div class="container">
+        <div class="header">
+            <nav class="navbar navbar-dark bg-dark mb-4">
+                <div>
+                    <span class="text-white h5">{{trip.dest}} - Trip Details</span>
+                </div>
+                <div>
+                    <span><a type="button" class="btn btn-sm btn-primary" href="/travels"><strong>Home</strong></a></span>
+                    <span><a type="button" class="btn btn-sm btn-warning" href="/logout"><strong>Log Out</strong></a></span>
+                </div>
+            </nav>
+        </div>
+    </div> 
+    <div class="container mb-5">
+        <h2>{{trip.dest}}</h2>
+        <div class="ml-5">
+            <p>Planned By: {{trip.planner.name}}</p>
+            <p>Description: {{trip.plan}}</p>
+            <p>Travel Date From: {{trip.start.date}}</p>
+            <p>Travel Date To: {{trip.end.date}}</p>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Others joining the trip:</h2>
+        {% for attendee in other_attendees %}
+        <p class="ml-5">{{attendee.name}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

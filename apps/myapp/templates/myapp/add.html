@@ -1,0 +1,75 @@
+<!-- By Andy Nguyen -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Add a Trip</title>
+</head>
+<body>
+    <!-- NAV BAR -->
+    <div class="container">
+        <div class="header">
+            <nav class="navbar navbar-dark bg-dark mb-4">
+                <div>
+                    <span class="text-white h5 mr-5">ADD A TRIP</span>
+                </div>
+                <div>
+                    <span><a type="button" class="btn btn-sm btn-primary" href="/travels"><strong>Home</strong></a></span>
+                    <span><a type="button" class="btn btn-sm btn-warning" href="/logout"><strong>Log Out</strong></a></span>
+                </div>
+            </nav>
+        </div>
+    </div> 
+    <!-- ADD A TRIP FORM -->
+    <div class="container">
+        <div class="col-xs-6 col-md-6">
+            <h4>Add a Trip</h4>
+            <form action="/travels/add_trip" method="post">
+                {% csrf_token %}
+                <!-- Destination -->
+                <div class="form-group row">
+                    <label for="dest" class="col-xs-3 col-md-3 col-form-label">Destination:</label>
+                    <div class="col-xs-9 col-md-9">
+                        <input type="text" class="form-control" name="dest" placeholder="">
+                    </div>
+                </div>
+                <!-- USERNAME -->
+                <div class="form-group row">
+                    <label for="plan" class="col-xs-3 col-md-3 col-form-label">Description:</label>
+                    <div class="col-sm-9 col-md-9">
+                        <input type="text" class="form-control" name="plan" placeholder="">
+                    </div>
+                </div>
+                <!-- START DATE -->
+                <div class="form-group row">
+                    <label for="start" class="col-xs-5 col-md-5 col-form-label">Travel Date From:</label>
+                    <div class="col-xs-7 col-md-7">
+                        <input type="date" class="form-control" name="start" placeholder="">
+                    </div>
+                </div>
+                <!-- END DATE -->
+                <div class="form-group row">
+                    <label for="end" class="col-xs-5 col-md-5 col-form-label">Travel Date To:</label>
+                    <div class="col-xs-7 col-md-7">
+                        <input type="date" class="form-control" name="end" placeholder="">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="/travels/add_trip"><button type="submit" class="btn btn-primary ">Add</button></a>
+                </div>
+                <!-- ADD_TRIP VALIDATOR MESSAGES -->
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if "add_trip" in message.tags %}
+                            <p{% if message.tags %} class="{{ message.tags }} text-danger mt-1"{% endif %}>{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>
